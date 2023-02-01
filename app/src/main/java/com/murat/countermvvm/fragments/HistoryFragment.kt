@@ -5,21 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.murat.countermvvm.databinding.FragmentHistoryBinding
 import com.murat.countermvvm.viewmodel.MainViewModel
 
 
-class HistoryFragment(private var vm: MainViewModel) : Fragment() {
+class HistoryFragment: Fragment() {
 
-    private lateinit var bindimg: FragmentHistoryBinding
+    private  val vm : MainViewModel by activityViewModels()
+    private lateinit var binding: FragmentHistoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        bindimg = FragmentHistoryBinding.inflate(inflater, container, false)
-        return bindimg.root
+        binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,7 +29,7 @@ class HistoryFragment(private var vm: MainViewModel) : Fragment() {
 
         vm.operationData.observe(requireActivity()) {
 
-            bindimg.tvHistory.append("\n${it.toString()}")
+            binding.tvHistory.append("\n${it.toString()}")
 
         }
     }
