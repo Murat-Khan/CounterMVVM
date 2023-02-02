@@ -16,14 +16,14 @@ class MainViewModel : ViewModel() {
     {
         counter ++
         counterData.value = counter
-        operationData.value = "Нажали: +"
+        operationData.value = "+"
     }
 
     fun decrement()
     {
         counter --
         counterData.value = counter
-        operationData.value = "Нажали: -"
+        operationData.value = "-"
     }
 
 }

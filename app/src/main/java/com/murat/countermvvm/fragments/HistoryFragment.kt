@@ -32,7 +32,7 @@ class HistoryFragment: Fragment() {
 
         vm.operationData.observe(requireActivity()) {
 
-            binding.tvHistory.append("\n$it")
+            binding.tvHistory.append("$it\n")
         }
     }
 }
