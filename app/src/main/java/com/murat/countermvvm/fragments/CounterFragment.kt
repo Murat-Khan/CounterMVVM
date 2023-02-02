@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.murat.countermvvm.databinding.FragmentCounterBinding
 import com.murat.countermvvm.viewmodel.MainViewModel
 
@@ -14,7 +15,7 @@ class CounterFragment: Fragment() {
 
     private lateinit var binding: FragmentCounterBinding
 
-    private  val vm : MainViewModel by activityViewModels()
+    private lateinit var viewModel : MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +28,13 @@ class CounterFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+
         setupView()
     }
 
     private fun setupView() {
-        vm.counterData.observe(requireActivity()) {
+        viewModel.counterData.observe(viewLifecycleOwner) {
             binding.tvCounter.text = it.toString()
 
         }

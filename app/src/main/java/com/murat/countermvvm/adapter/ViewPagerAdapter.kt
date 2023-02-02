@@ -21,5 +21,4 @@ class ViewPagerAdapter(fm: FragmentManager, private var fragment: ArrayList<Frag
             else -> "История"
         }
     }
-
 }
